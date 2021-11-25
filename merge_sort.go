@@ -1,6 +1,9 @@
 package practice
 
-func MergeSort(nums []int) []int {
+// worst case complexity:
+// let n = len(nums)
+// lg(n)
+func MergeSort(nums []int) []int { // nums: [1, 2, 3, 4, 5, 6, 7, 8] | [1, 2, 3, 4]
 	if len(nums) < 2 {
 		return nums
 	}
@@ -8,11 +11,12 @@ func MergeSort(nums []int) []int {
 	mid_i := len(nums) / 2
 	left, right := nums[:mid_i], nums[mid_i:]
 
-	left = MergeSort(left)
-	right = MergeSort(right)
+	left = MergeSort(left)  // left = [1, 2, 3, 4] | [1, 2]
+	right = MergeSort(right) // right = [5, 6, 7, 8] | [3, 4]
 	return merge(left, right)
 }
 
+// worst case complexity: len(left) + len(right)
 // merge merges 2 sorted array of numbers
 func merge(left, right []int) []int {
 	res := make([]int, 0, len(left)+len(right))
