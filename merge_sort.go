@@ -1,15 +1,15 @@
 package practice
 
 func MergeSort(nums []int) []int {
-    if nums == nil {
-        return nil
-    }
+	if nums == nil {
+		return nil
+	}
 
-    newNums := make([]int, len(nums))
-    copy(newNums, nums)
-    nums = newNums
-    MergeSortNoCopy(nums)
-    return nums
+	newNums := make([]int, len(nums))
+	copy(newNums, nums)
+	nums = newNums
+	MergeSortNoCopy(nums)
+	return nums
 }
 
 func MergeSortNoCopy(nums []int) {
@@ -19,66 +19,41 @@ func MergeSortNoCopy(nums []int) {
 
 	mid_i := len(nums) / 2
 	left, right := nums[:mid_i], nums[mid_i:]
-    left_copy := make([]int, len(left))
-    copy(left_copy, left)
-    right_copy := make([]int, len(right))
-    copy(right_copy, right)
 
-	sort(left_copy)
-	sort(right_copy)
-    merge(nums, left_copy, right_copy)
-	return
-}
-
-func sort(nums []int) {
-	if len(nums) < 2 {
-		return
-	}
-	if len(nums) > 2 {
-        MergeSortNoCopy(nums)
-        return
-	}
-
-	if nums[0] > nums[1] {
-		nums[0], nums[1] = nums[1], nums[0]
-	}
-
+	MergeSortNoCopy(left)
+	MergeSortNoCopy(right)
+	copy(nums, merge(left, right))
 	return
 }
 
 // merge merges 2 sorted array of numbers
-func merge(original, nums1, nums2 []int) {
-    original = original[:0]
+func merge(left, right []int) []int {
+	res := make([]int, 0, len(left)+len(right))
 
 	for {
 		// if any of the slice is empty, just append everything else to
 		// result and return
-		if len(nums1) == 0 {
-			original = append(original, nums2...)
-            return
-
+		if len(left) == 0 {
+			return append(res, right...)
 		}
-		if len(nums2) == 0 {
-			original = append(original, nums1...)
-            return
+		if len(right) == 0 {
+			return append(res, left...)
 		}
 
 		// append first elem of nums1 if it is smaller or equal to
 		// first elem of num2
-		if nums1[0] < nums2[0] {
-			original = append(original, nums1[0])
-			nums1 = nums1[1:]
+		if left[0] < right[0] {
+			res = append(res, left[0])
+			left = left[1:]
 			continue
 		}
 
 		// append first elem of nums2 otherwise
-		original = append(original, nums2[0])
-		nums2 = nums2[1:]
+		res = append(res, right[0])
+		right = right[1:]
 	}
 }
 
 // time complexity:
 
-
-
-// space: 
+// space:

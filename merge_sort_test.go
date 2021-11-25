@@ -45,15 +45,15 @@ func TestMergeSort(t *testing.T) {
 	}
 
 	for _, tt := range tests {
-		t.Run(tt.name + ", with copy", func(t *testing.T) {
+		t.Run(tt.name+", with copy", func(t *testing.T) {
 			actual := MergeSort(tt.given)
 			assert.Equal(t, tt.want, actual)
 		})
 	}
 
 	for _, tt := range tests {
-		t.Run(tt.name + ", no copy", func(t *testing.T) {
-            MergeSortNoCopy(tt.given)
+		t.Run(tt.name+", no copy", func(t *testing.T) {
+			MergeSortNoCopy(tt.given)
 			assert.Equal(t, tt.want, tt.given)
 		})
 	}
