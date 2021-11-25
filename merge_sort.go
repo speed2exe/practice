@@ -1,29 +1,16 @@
 package practice
 
 func MergeSort(nums []int) []int {
-	if nums == nil {
-		return nil
-	}
-
-	newNums := make([]int, len(nums))
-	copy(newNums, nums)
-	nums = newNums
-	MergeSortNoCopy(nums)
-	return nums
-}
-
-func MergeSortNoCopy(nums []int) {
 	if len(nums) < 2 {
-		return
+		return nums
 	}
 
 	mid_i := len(nums) / 2
 	left, right := nums[:mid_i], nums[mid_i:]
 
-	MergeSortNoCopy(left)
-	MergeSortNoCopy(right)
-	copy(nums, merge(left, right))
-	return
+	left = MergeSort(left)
+	right = MergeSort(right)
+	return merge(left, right)
 }
 
 // merge merges 2 sorted array of numbers
