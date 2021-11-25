@@ -11,7 +11,7 @@ func MergeSort(nums []int) []int { // nums: [1, 2, 3, 4, 5, 6, 7, 8] | [1, 2, 3,
 	mid_i := len(nums) / 2
 	left, right := nums[:mid_i], nums[mid_i:]
 
-	left = MergeSort(left)  // left = [1, 2, 3, 4] | [1, 2]
+	left = MergeSort(left)   // left = [1, 2, 3, 4] | [1, 2]
 	right = MergeSort(right) // right = [5, 6, 7, 8] | [3, 4]
 	return merge(left, right)
 }
