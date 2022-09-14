@@ -8,6 +8,7 @@ import (
 func main() {
 	fmt.Println(median([]float32{1, 2, 3, 4, 5, 6, 7, 8, 9}))
 	fmt.Println(median([]float32{1, 2, 3, 4, 5, 6, 7, 8}))
+	fmt.Println(median([]float32{1, 2, 3, 4, 4, 5, 6, 7}))
 }
 
 func median(arr []float32) float32 {
