@@ -58,7 +58,9 @@ func (this *LRUCache) Put(key int, value int)  {
 
 }
 
+// adds node to the head of the list
 func (this *LRUCache) Add(node *Node) {
+    node.prev = nil
     node.next = this.head
     if this.head != nil {
         this.head.prev = node
@@ -72,6 +74,7 @@ func (this *LRUCache) Add(node *Node) {
 func (this *LRUCache) Remove(node *Node) {
     // link node.next
     if node != this.head {
+        // if node is not head, it will have a prev
         node.prev.next = node.next
     } else {
         this.head = node.next
@@ -79,11 +82,9 @@ func (this *LRUCache) Remove(node *Node) {
 
     // link node.prev
     if node != this.tail {
+        // if node is not tail, it will have a next
         node.next.prev = node.prev
     } else {
         this.tail = node.prev
     }
-    
-    node.next = nil
-    node.prev = nil
 }
