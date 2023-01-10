@@ -14,28 +14,28 @@ var symbolValues = map[byte]int{
 func romanToInt(s string) int {
 	result := 0
 
-    prev := byte(' ')
+	prev := byte(' ')
 	for _, c := range []byte(s) {
 		switch c {
-        case 'V', 'X':
+		case 'V', 'X':
 			result += symbolValues[c]
-            if prev == 'I' {
-                result -= 2
-            }
-        case 'L', 'C':
+			if prev == 'I' {
+				result -= 2
+			}
+		case 'L', 'C':
 			result += symbolValues[c]
-            if prev == 'X' {
-                result -= 20 
-            }
-        case 'D', 'M':
+			if prev == 'X' {
+				result -= 20
+			}
+		case 'D', 'M':
 			result += symbolValues[c]
-            if prev == 'C' {
-                result -= 200
-            }
-        default:
-            result += symbolValues[c]
+			if prev == 'C' {
+				result -= 200
+			}
+		default:
+			result += symbolValues[c]
 		}
-        prev = c
+		prev = c
 	}
 
 	return result
