@@ -44,3 +44,37 @@ func calculate(s string) int {
 func main() {
 	fmt.Println(calculate("-(1-2+3)"))
 }
+
+// - 1 + 2 * 3
+//
+// incoming: -, stack: [-], postfix: []
+// incoming: 1, stack: [-], postfix: [1]
+// incoming: +, stack: [+], postfix: [1, -]
+// incoming: 2, stack: [+], postfix: [1, -, 2]
+// incoming: *, stack: [+, *], postfix: [1, -, 2]
+// incoming: 3, stack: [+, *], postfix: [1, -, 2, 3]
+// stack: [], postfix: [1, -, 2, 3, *, +]
+
+// postfix: [1, -, 2, 3, *, +], stack: []
+// postfix: [-, 2, 3, *, +], stack: [1]
+// postfix: [2, 3, *, +], stack: [-1]
+// postfix: [3, *, +], stack: [-1, 2]
+// postfix: [*, +], stack: [-1, 2, 3]
+// postfix: [+], stack: [-1, 6]
+// postfix: [], stack: [5]
+
+// input: "-(2-3)", stack: [], postfix: []
+// input: "(2-3)", stack: [-], postfix: []
+// input: "2-3)", stack: [-, (], postfix: []
+// input: "-3)", stack: [-, (], postfix: [2]
+// input: "3)", stack: [-, (, -], postfix: [2]
+// input: ")", stack: [-, (, -], postfix: [2, 3]
+// input: "", stack: [-], postfix: [2, 3, -]
+// stack: [], postfix: [2, 3, -, -]
+
+// postfix: [2, 3, -, -], stack: []
+// postfix: [3, -, -], stack: [2]
+// postfix: [-, -], stack: [2, 3]
+// postfix: [-], stack: [-1]
+// postfix: [], stack: [1]
+
