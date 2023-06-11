@@ -21,3 +21,36 @@ func twoSum(nums []int, target int) []int {
 
 	panic("no solution")
 }
+
+// num: "56471", 2 -> "541"
+// num: "199", 1 -> "19"
+// num: "991", 1 -> "91"
+// func main() {
+// 	tests := []struct {
+// 		nums     string
+// 		target   int
+// 		expected string
+// 	}{
+// 		{
+// 			nums:     "56471",
+// 			target:   2,
+// 			expected: "541",
+// 		},
+// 		{
+// 			nums:     "199",
+// 			target:   1,
+// 			expected: "19",
+// 		},
+// 		{
+// 			nums:     "991",
+// 			target:   1,
+// 			expected: "91",
+// 		},
+// 	}
+// 	for _, test := range tests {
+// 		actual := removeKdigits(test.nums, test.target)
+// 		if actual != test.expected {
+//       fmt.Println("[WRONG]", "test:", test, ", actual:", actual)
+// 		}
+// 	}
+// }

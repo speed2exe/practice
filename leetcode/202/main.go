@@ -1,37 +1,48 @@
 // https://leetcode.com/problems/happy-number/
 package main
 
+import "fmt"
+
 func isHappy(n int) bool {
-	digits := getDigits(n, nil)
-	cache := make(map[int]bool)
-	return isHappyWithDigits(n, digits, cache)
+	seen := map[int]struct{}{}
+
+	for {
+		if _, ok := seen[n]; ok {
+			return false
+		} else {
+			seen[n] = struct{}{}
+		}
+		sum := 0
+		for n > 0 {
+			r := n % 10
+			sum += r * r
+			n /= 10
+		}
+		if sum == 1 {
+			return true
+		}
+		n = sum
+	}
 }
 
-func isHappyWithDigits(n int, digits []byte, cache map[int]bool) bool {
-	if v, ok := cache[n]; ok {
-		return v
+func main() {
+	tests := []struct {
+		n        int
+		expected bool
+	}{
+		{
+			n:        19,
+			expected: true,
+		},
+		{
+			n:        2,
+			expected: false,
+		},
 	}
-	sum := 0
-	for _, digit := range digits {
-		sum += int(digit) * int(digit)
+	for _, test := range tests {
+		actual := isHappy(test.n)
+		if actual != test.expected {
+			fmt.Println("[WRONG]", "test:", test, ", actual:", actual)
+		}
 	}
-	if sum == 1 {
-		return true
-	}
-	cache[n] = false
-	if isHappyWithDigits(sum, getDigits(sum, digits[:0]), cache) {
-		cache[n] = true
-		return true
-	}
-	return false
-}
-
-func getDigits(n int, digits []byte) []byte {
-	count := 0
-	for n > 0 {
-		count++
-		digits = append(digits, byte(n%10))
-		n = n / 10
-	}
-	return digits
 }

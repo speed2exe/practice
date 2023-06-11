@@ -77,4 +77,3 @@ func main() {
 // postfix: [-, -], stack: [2, 3]
 // postfix: [-], stack: [-1]
 // postfix: [], stack: [1]
-
